@@ -1,9 +1,9 @@
 <%= form_with(model: order) do |form| %>
   <% if order.errors.any? %>
     <div style="color: red">
-      <!--
+      
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-      -->
+      
 
       <ul>
         <% order.errors.each do |error| %>
@@ -20,9 +20,9 @@
 
   <div>
     <br>
-    <%= form.text_field :name, class:"form-control", placeholder:"Customer Name" %>
+    <%= form.collection_select :customer_id, Customer.order(:name), :id, :name, class:"form-control" %>
     <br>
-    <%= form.text_field :email, class:"form-control", placeholder:"Customer Email" %>
+    <%= form.collection_select :customer_id, Customer.order(:email), :id, :email, class:"form-control" %>
   </div>
 
   <%= form.fields_for :carts do |builder| %>
@@ -30,7 +30,7 @@
 	<% end %>
 
   <br>
-  <%= link_to_add_fields "Add Item", :form, :carts , class: "btn btn-primary" %>
+  <%= link_to_add_fields "Add Item", :form, :carts %>
 
   <div>
     <%= form.text_field :status, value: 'NEW', type: :hidden %>

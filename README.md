@@ -1,24 +1,60 @@
-# README
+# READ.MD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Name            : Wildan Mukholad Fauzi
+## Class           : KM Backend 1
+## Participant_Id  : KM_G2BE1017
 
-Things you may want to cover:
+# Gigih Family Catering 
 
-* Ruby version
+This program is made using the Ruby, HTML&CSS, and JavaScript programming languages. 
 
-* System dependencies
+And also this program is made using the ruby on rails framework and bootstrap framework
 
-* Configuration
+This program have many features:
 
-* Database creation
+## Categories =>   
+- Create data
+- Read data
+- Update data
+- Delete data
 
-* Database initialization
+## Items =>   
+- Create data
+- Read data
+- Update data
+- Delete data
 
-* How to run the test suite
+## Customers =>   
+- Create data
+- Read data
+- Update data
+- Delete data
 
-* Services (job queues, cache servers, search engines, etc.)
+## Orders =>   
+- Create data {still stuck error}
+- Read data
+- Update data
+- Delete data
 
-* Deployment instructions
+In this program I added several gem files including:
 
-* ...
+```ruby
+
+gem "email_validator"
+
+gem "bootstrap", "~> 5.1.3"
+
+gem "jquery-rails"
+
+group :development, :test do
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "rails-controller-testing"
+end
+
+```
+
+
+
+

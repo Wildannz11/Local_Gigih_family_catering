@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item, only: %i[edit update new create]
   before_action :select_order_date, only: %i[ create ]
   before_action :check_order_status, only: %i[ index ]
-
+  before_action :get_customer_id_by_email, only: %i[ create ]
 
   # GET /orders or /orders.json
   def index
@@ -94,4 +94,18 @@ class OrdersController < ApplicationController
     def set_item
       @items = Item.all
     end  
+
+    def get_customer_id_by_email
+      if Customer.exists?(email: params[:order][:email])
+        params[:order][:customer_id] = Customer.find_by(email: params[:order][:email]).id
+      else
+        @new_customer = Customer.new(name: params[:order][:name], email: params[:order][:email])
+        if @new_customer.save
+          params[:order][:customer_id] = @new_customer.id
+        else
+          params[:order][:customer_id] = -1
+        end
+      end
+    end
+
 end
