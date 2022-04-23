@@ -1,2 +1,14 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="containerr container" >
+  <p style="color: orange"><%= notice %></p>
+
+  <%= render @order %>
+
+  <div>
+    <% if @order.status == "NEW" %>
+      <%= button_to 'Change status to Paid', { controller: :orders, action: 'update_order_status', id: @order.id, status: "PAID" }, method: :post, class:"btn btn-primary" %>
+      <br>
+      <%= button_to 'Change status to Cancelled', { controller: :orders, action: 'update_order_status', id: @order.id, status: "CANCELLED" }, method: :post, class:"btn btn-danger" %>
+    <% end %>
+    <br>
+    <%= link_to "Back", orders_path, class:'btn btn-info' %>
+  </div>

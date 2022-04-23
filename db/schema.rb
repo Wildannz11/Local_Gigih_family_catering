@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_20_061346) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_22_181232) do
+  create_table "assignments", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_assignments_on_category_id"
+    t.index ["item_id"], name: "index_assignments_on_item_id"
+  end
+
+  create_table "carts", id: false, force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.float "price"
+    t.integer "quantity"
+    t.float "sub_total_price"
+    t.index ["item_id", "order_id"], name: "index_carts_on_item_id_and_order_id"
+    t.index ["order_id", "item_id"], name: "index_carts_on_order_id_and_item_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -29,34 +48,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_20_061346) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.float "price"
-    t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
-  end
-
-  create_table "order_details", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "item_id", null: false
-    t.integer "quantity"
-    t.float "item_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_order_details_on_item_id"
-    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.text "description"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.float "total_price"
-    t.datetime "order_date"
+    t.date "order_date"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
-  add_foreign_key "items", "categories"
-  add_foreign_key "order_details", "items"
-  add_foreign_key "order_details", "orders"
+  add_foreign_key "assignments", "categories"
+  add_foreign_key "assignments", "items"
   add_foreign_key "orders", "customers"
 end

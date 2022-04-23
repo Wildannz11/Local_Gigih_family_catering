@@ -1,0 +1,60 @@
+<%= form_with(model: order) do |form| %>
+  <% if order.errors.any? %>
+    <div style="color: red">
+      <!--
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      -->
+
+      <ul>
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :order_date, style: "display: block" %>
+    <%= form.date_select :order_date, use_short_month: true, date_separator: "-" %>
+  </div>
+
+  <div>
+    <br>
+    <%= form.text_field :name, class:"form-control", placeholder:"Customer Name" %>
+    <br>
+    <%= form.text_field :email, class:"form-control", placeholder:"Customer Email" %>
+  </div>
+
+  <%= form.fields_for :carts do |builder| %>
+    <%= render 'carts_fields', form: builder %>
+	<% end %>
+
+  <br>
+  <%= link_to_add_fields "Add Item", :form, :carts , class: "btn btn-primary" %>
+
+  <div>
+    <%= form.text_field :status, value: 'NEW', type: :hidden %>
+  </div>
+
+  <div>
+    <br>
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+	jQuery(function() {
+		$('form').on('click', '.remove_fields', function(event) {
+		 	$(this).prev('input[type=hidden]').val('1');
+			$(this).closest('fieldset').hide();
+			return event.preventDefault();
+		});
+	 	return $('form').on('click', '.add_fields', function(event) {
+			var regexp, time;
+			time = new Date().getTime();
+			regexp = new RegExp($(this).data('id'), 'g');
+			$(this).before($(this).data('fields').replace(regexp, time));
+			return event.preventDefault();
+	 	});   
+	});   
+</script> 

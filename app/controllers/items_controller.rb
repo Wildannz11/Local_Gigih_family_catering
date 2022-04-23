@@ -1,26 +1,32 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit update ] 
-  
+  before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :set_category, only: %i[ edit update new create ]
+
+  # GET /items or /items.json
   def index
-    @items = params[:letter].nil? ? Item.all : Item.by_letter(params[:letter])
+    @items = Item.all
   end
 
+  # GET /items/1 or /items/1.json
   def show
   end
 
+  # GET /items/new
   def new
     @item = Item.new
   end
 
+  # GET /items/1/edit
   def edit
   end
 
+  # POST /items or /items.json
   def create
     @item = Item.new(item_params)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to item_url(@item), notice: "item was successfully created." }
+        format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -29,10 +35,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /items/1 or /items/1.json
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to item_url(@item), notice: "item was successfully updated." }
+        format.html { redirect_to item_url(@item), notice: "Item was successfully updated." }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -41,8 +48,8 @@ class ItemsController < ApplicationController
     end
   end
 
+  # DELETE /items/1 or /items/1.json
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
 
     respond_to do |format|
@@ -59,6 +66,11 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :price, :category_id)
+      params.require(:item).permit(:name, :price, :description,  :category_ids => [] )
     end
+
+    def set_category
+      @categories = Category.all
+    end  
+
 end

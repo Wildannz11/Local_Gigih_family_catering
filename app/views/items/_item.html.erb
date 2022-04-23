@@ -1,17 +1,26 @@
-<div id="<%= dom_id item %>">
-  <p>
-    <strong>Name : </strong>
-    <%= item.name %>
-  </p>
+<div class="container">
+  <div id="<%= dom_id item %>">
+    <table  id="items"  > 
+      <thead >
+        <tr>
+          <th coolspan="3">Name : </th>
+          <td coolspan="3"><%= item.name %></td>
+        </tr>
 
-  <p>
-    <strong>Price : </strong>
-    <%= item.price %>
-  </p>
+        <tr>
+          <th coolspan="3">Price : </th>
+          <td coolspan="3">$<%= item.price %></td>
+        </tr>
 
-  <p>
-    <strong>Category : </strong>
-    <%= item.category_id %>
-  </p>
-
-</div>
+        <tr>
+          <th coolspan="3">Category : </th>
+          <td coolspan="3">
+            <% item.categories.each do |category| %>
+              <li><%= category.name %></li>
+            <% end %>
+          </td>
+        </tr>
+      </thead>
+    </table>
+  </div>    
+</div>  

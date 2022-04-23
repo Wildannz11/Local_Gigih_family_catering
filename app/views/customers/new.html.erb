@@ -1,2 +1,11 @@
-<h1>Customers#new</h1>
-<p>Find me in app/views/customers/new.html.erb</p>
+<div class="containerr container" >
+  <h1>New customer</h1>
+
+  <%= render "form", customer: @customer %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to customers", customers_path , class: "btn btn-warning"%>
+  </div>
+</div>  

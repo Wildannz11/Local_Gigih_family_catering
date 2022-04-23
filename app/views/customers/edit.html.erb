@@ -1,2 +1,13 @@
-<h1>Customers#edit</h1>
-<p>Find me in app/views/customers/edit.html.erb</p>
+<div class="containerr container" >
+  <h1>Editing customer</h1>
+
+  <%= render "form", customer: @customer %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this customer", @customer , class: "btn btn-light" %>
+    <br>
+    <%= link_to "Back to customers", customers_path, class: "btn btn-light" %>
+  </div>
+</div>

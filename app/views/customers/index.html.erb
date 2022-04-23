@@ -1,2 +1,83 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+<body>
+
+<nav class="containerr navbar navbar-expand-lg navbar-light gradient">
+  <div class="container-fluid">
+    <div class="image">
+    <%= image_tag "gengigih.png", class: "image img" %>
+      <h5 style="margin-left:1rem; color:snow;">Gigih Family Catering</h5>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" >
+      <div class="navbar-nav" style="margin-left:3rem;" >
+
+      <%= link_to "Orders", "orders#index" , class:'nav-link snow' %>
+      <%= link_to "Customers", "customers#index" , class:'nav-link snow' %>
+      <%= link_to "Items", "items#index" , class:'nav-link snow' %>
+      <%= link_to "Categories", "categories#index" , class:'nav-link snow' %>  
+      
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="containerr container" >
+  <h2 class="text-center" align="center" >Welcome to Gigih Family Catering </h2>
+  <br>
+  <h3 class="text-center" align="center" >Free to order your favorite menu </h3> 
+</div>
+ 
+
+<div class="containerr"> 
+
+<p style="color: green"><%= notice %></p>
+
+  <h1>List Customers</h1>
+  <br>
+  <%= link_to "New customer", new_customer_path , class: "btn btn-primary"%>
+  <br>
+  <br>
+  <table class="tabell text-center" id="items"  > 
+      <thead >
+        <tr>
+          <th coolspan="3">Number</th>
+          <th coolspan="3">Name</th>
+          <th coolspan="3">Email</th>
+          <th coolspan="3">Phone</th>
+          <th coolspan="3">Address</th>
+          <th coolspan="3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each_with_index do |customer, index| %>
+          <% index += 1 %>
+          <tr>
+            <td><%= index %></td>
+            <td><%=  customer.name %></td>
+            <td><%=  customer.email %></td>
+            <td><%=  customer.phone %></td>
+            <td><%=  customer.address %></td>
+
+            <td><%= link_to "Show this customer", customer , class: "btn btn-info" %></td>
+            <td><%= link_to "Edit this customer", edit_customer_path(customer), class: "btn btn-light"  %></td>
+            <td><%= link_to "Delete this customer", customer , action: :destroy, method: :delete , class: "btn btn-danger"  %></td>        
+          </tr>
+      </tbody>  
+      <% end %>
+  </table>
+  
+
+</div>
+
+</body>
+
+<footer>
+  <div class="footer1" >
+    <div class="footer2" >
+    <h6 align="center" > Copyright &#9400; 2022 - Gigih_Family_Market </h6>
+    </div>  
+  </div>
+</footer>
+
+

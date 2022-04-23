@@ -1,14 +1,98 @@
-<p style="color: green"><%= notice %></p>
+<body>
 
-<h1>List Foods</h1>
+<nav class="containerr navbar navbar-expand-lg navbar-light gradient">
+  <div class="container-fluid">
+    <div class="image">
+    <%= image_tag "gengigih.png", class: "image img" %>
+      <h5 style="margin-left:1rem; color:snow;">Gigih Family Catering</h5>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" >
+      <div class="navbar-nav" style="margin-left:3rem;" >
 
-<div id="items">
-  <% @items.each do |item| %>
-    <%= render item %>
-    <p>
-      <%= link_to "Show detail this item", item %>
-    </p>
-  <% end %>
+      <%= link_to "Orders", "orders#index" , class:'nav-link snow' %>
+      <%= link_to "Customers", "customers#index" , class:'nav-link snow' %>
+      <%= link_to "Items", "items#index" , class:'nav-link snow' %>
+      <%= link_to "Categories", "categories#index" , class:'nav-link snow' %>  
+      
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="containerr container" >
+  <h2 class="text-center" align="center" >Welcome to  Catering </h2>
+  <br>
+  <h3 class="text-center" align="center" >Free to order your favorite menu </h3> 
+</div>
+ 
+
+<div class="containerr"> 
+
+  <p style="color: green"><%= notice %></p>
+  <br>
+  <h1>List Items</h1>
+  <br>
+
+  <%= link_to "New item", new_item_path , class: "btn btn-info" %>
+  <br>
+  <br>
+  <table class="tabell text-center table table-striped table-bordered" > 
+    <thead>
+      <tr>
+        <th coolspan="3">Number </th>
+        <th coolspan="3">Name </th>
+        <th coolspan="3">Price </th>
+        <th coolspan="3">Category </th>
+        <th coolspan="3">Description </th>
+        <th coolspan="3">Action </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each_with_index do |item, index| %>
+        <% index += 1 %>
+        <tr>
+          <td><%= index %></td>
+          <td><%=  item.name %></td>
+          <td><%=  item.price %></td>
+          <td><%=  item.description %>
+          
+          <td>
+            <% item.categories.sort_by(&:name).each do |category| %>
+              <li><%= category.name %></li>
+            <% end %>
+          </td>
+
+          <td><%= link_to "Show this item", item , class: "button btn btn-secondary" %></td>
+          <td><%= link_to "Edit this item", edit_item_path(item), class: "button btn btn-primary"  %></td>
+          <td><%= link_to "Delete this item", item, method: "delete" , class: "button btn btn-info"  %></td>        
+        </tr>
+    </tbody>  
+    <% end %>
+  </table>
+  
+
 </div>
 
-<%= link_to "New item", new_item_path %>
+</body>
+
+<footer>
+  <div class="footer1" >
+    <div class="footer2" >
+    <h6 align="center" > Copyright &#9400; 2022 - Gigih_Family_Market </h6>
+    </div>  
+  </div>
+</footer>
+
+
+<div class="container">
+  
+  
+
+  
+
+  
+
+</div>

@@ -1,14 +1,87 @@
-<p style="color: green"><%= notice %></p>
+<body>
 
-<h1>Categories</h1>
+<nav class="containerr navbar navbar-expand-lg navbar-light gradient">
+  <div class="container-fluid">
+    <div class="image">
+    <%= image_tag "gengigih.png", class: "image img" %>
+      <h5 style="margin-left:1rem; color:snow;">Gigih Family Catering</h5>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" >
+      <div class="navbar-nav" style="margin-left:3rem;" >
 
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
+      <%= link_to "Orders", "orders#index" , class:'nav-link snow' %>
+      <%= link_to "Customers", "customers#index" , class:'nav-link snow' %>
+      <%= link_to "Items", "items#index" , class:'nav-link snow' %>
+      <%= link_to "Categories", "categories#index" , class:'nav-link snow' %>  
+      
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="containerr container" >
+  <h2 class="text-center" align="center" >Welcome to Gigih Family Catering </h2>
+  <br>
+  <h3 class="text-center" align="center" >Free to order your favorite menu </h3> 
+</div>
+ 
+
+<div class="containerr container"> 
+
+  <p style="color: green"><%= notice %></p>
+  <br>
+  <h1>List Categories</h1>
+  <br>
+  <%= link_to "New category", new_category_path, class: "btn btn-info" %>
+  <br>
+  <br>
+    <div id="categories">
+    
+      <table class="text-center" id="items"  > 
+      <thead >
+        <tr>
+          <th coolspan="3">Number</th>
+          <th coolspan="3">Name</th>
+          <th coolspan="3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @categories.each_with_index do |category, ind| %>
+        <% ind += 1 %>
+        <tr>
+          <td><%= ind %></td>
+          <td><%=  category[:name] %></td>
+          <td><%= link_to "Show this item", category , class: "button btn btn-light " %></td>
+          <td><%= link_to "Edit this item", edit_category_path(category), class: "button  btn btn-light " %></td>
+          <td><%= link_to "Delete this item", category, method: "delete" , class: "button  btn btn-light " %></td>        
+        </tr>
+      </tbody>
+      <% end %>  
+    </table>
+    
+  </div>
+  
+
 </div>
 
-<%= link_to "New category", new_category_path %>
+</body>
+
+<footer>
+  <div class="footer1" >
+    <div class="footer2" >
+    <h6 align="center" > Copyright &#9400; 2022 - Gigih_Family_Market </h6>
+    </div>  
+  </div>
+</footer>
+
+
+
+
+
+<div class="container">
+  
+
+</div>

@@ -8,7 +8,7 @@ RSpec.describe Item, type: :model do
     FactoryBot.create(:category)
   end
   subject(:item) do
-    FactoryBot.create(:item, category: category)
+    FactoryBot.create(:item)
   end
 
   it 'has a valid factory' do
@@ -17,12 +17,6 @@ RSpec.describe Item, type: :model do
 
   it 'is valid with a name ' do
     expect(item).to be_valid
-  end
-
-  it 'is invalid without a category' do
-    item.category = nil
-    item.valid?
-    expect(item.errors[:category]).to include('must exist')
   end
 
   it 'is invalid without a name' do
@@ -37,8 +31,14 @@ RSpec.describe Item, type: :model do
     expect(item.errors[:name]).to include("can't be blank")
   end
 
+  it 'is invalid without a price' do
+    item = FactoryBot.build(:item, price: nil)
+    item.valid?
+    expect(item.errors[:price]).to include("can't be blank")
+  end
+
   it 'is invalid with a duplicate name' do
-    FactoryBot.create(:item, name: 'Nasi Uduk')
+    item1 = FactoryBot.create(:item, name: 'Nasi Uduk')
     item2 = FactoryBot.build(:item, name: 'Nasi Uduk')
 
     item2.valid?
@@ -60,25 +60,9 @@ RSpec.describe Item, type: :model do
     expect(item.errors[:price]).to include('must be greater than 0.01')
   end
 
-  describe 'self#by_letter' do
-    it 'should return a sorted array of results that match' do
-      item1 = FactoryBot.create(:item, name: 'Nasi Uduk')
-
-      item2 = FactoryBot.create(:item, name: 'Kerak Telor')
-
-      item3 = FactoryBot.create(:item, name: 'Nasi Semur Jengkol')
-
-      expect(item.by_letter('N')).to eq([item3, item1])
-    end
-  end
-
-  describe 'self#by_category' do
-    it 'should return items that has the category' do
-      new_category = FactoryBot.build(:category, name: 'test_test')
-      item2 = FactoryBot.create(:item, name: 'Nasi Semur Jengkol', category: new_category)
-
-      expect(item.by_category(category.name)).to eq([item])
-      expect(item.by_category(new_category.name)).to eq([item2])
-    end
+  it 'is invalid with a more than 150 characters for description' do
+    item = FactoryBot.build(:item, description: "deskripsi" * 17)
+    item.valid?
+    expect(item.errors[:description]).to include('is too long (maximum is 150 characters)')
   end
 end

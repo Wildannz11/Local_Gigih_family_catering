@@ -1,2 +1,12 @@
-<h1>Orders#edit</h1>
-<p>Find me in app/views/orders/edit.html.erb</p>
+<div class="containerr container" >
+  <h1>Editing order</h1>
+
+  <%= render "form", order: @order %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this order", @order , class: "btn btn-info" %> |
+    <%= link_to "Back to orders", orders_path , class: "btn btn-primary"%>
+  </div>
+</div>

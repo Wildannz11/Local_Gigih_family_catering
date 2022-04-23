@@ -1,0 +1,24 @@
+<div id="<%= dom_id order %>">
+  <div class="p-2 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-2">
+      <h1 class="display-6 fw-bold"><%= order.customer.name %> (<%= order.customer.email %>)</h1>
+      <p class="col-md-8 fs-4">
+        Order date: <%= order.order_date %>
+      </p>
+      <p class="col-md-8 fs-4">
+        Order status: <%= order.status %>
+      </p>
+      <p class="col-md-8 fs-4">
+        Total price: Rp. <%= order.total_price %>
+      </p>
+      <p>
+        <br>
+        <strong>Choosen item(s):</strong>
+        <% order.carts.each do |cart| %>
+        <li><%= cart.item.name %> (Qty: <%= cart.quantity %>)</li>
+        - Sub-total price: Rp. <%= cart.sub_total_price %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

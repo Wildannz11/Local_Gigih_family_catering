@@ -16,3 +16,109 @@
 
 @import "bootstrap";
 @import "**/*";
+
+body {
+    background-image: url("market1.jpg");
+    
+}
+
+footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+}
+
+footer h6 {
+    color: blueviolet;
+}
+
+.footer1 {
+background: linear-gradient(69deg, rgba(236,171,38,1) 20%, rgba(223,250,0,1) 50%, rgba(236,171,38,1) 80%); 
+width: auto; 
+height: 5rem; 
+justify-content: center; 
+margin-top:5rem;
+}
+
+.footer2 {
+    font-family: sans-serif; 
+    justify-content: center; 
+    padding: 30px;
+}
+
+.gradient {
+    background: linear-gradient(69deg, rgba(44,255,100,1) 25%, rgba(0,245,255,1) 75%);;;
+}
+
+.image {
+    display:flex; 
+    justify-items:center; 
+    align-items: center;
+    
+}
+
+.image img {
+    max-height: 6rem; 
+    max-width: 6rem;
+}
+
+.nav-link {
+    color: snow;
+    font-size: large;
+    font-weight: bold;
+}
+
+.containerr {
+    width: auto; 
+    height:auto;
+    margin-bottom: 2rem;
+    background: linear-gradient(69deg, rgba(44,255,100,1) 25%, rgba(0,245,255,1) 75%);;;
+}
+
+.conrainerr h2 {
+    color: snow; 
+    margin:5rem; 
+    font-weight: 400; 
+    padding-top: 2rem;
+}
+
+.conrainerr h3 {
+    color: snow; 
+    padding-bottom: 2rem; 
+    margin:5rem; 
+    font-weight: 400;
+}
+
+.button {
+    color: rgb(18, 19, 42);
+    padding: 5px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 50px 0;
+  }
+  
+td {
+    padding: 5px 0;
+}
+
+table tr td:empty {
+    width: 25px;
+}
+
+table tr td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* untuk index dan index-profile */
+  
+  body a {
+    text-decoration: none;
+    color: black;
+  }
